@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Léky na hubnutí GLP-1 — co říkají studie (v3)</title>
+<meta name="description" content="Přehled ze syntézy 80+ klinických studií o lécích Mounjaro, Wegovy a Saxenda. Žádné názory — jen data.">
+<style>
+:root {
+  --sage: #7C9A82;
+  --sage-light: #a8c4ad;
+  --sage-bg: #eef3ef;
+  --peach: #E8985E;
+  --peach-light: #f5cdb0;
+  --bg: #F9F6F1;
+  --bg-card: #FFFFFF;
+  --text: #2D2D2D;
+  --text-muted: #6B6B6B;
+  --red-light: #fce8e8;
+  --red-border: #e0a0a0;
+  --green-light: #e8f5e8;
+  --green-border: #a0cca0;
+  --mounjaro: #0D4EA6;
+  --wegovy: #1A7A8A;
+  --saxenda: #2E7D32;
+  --antibio: #9E9E9E;
+  --radius: 12px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+section { padding: 48px 0; }
+section + section { border-top: 1px solid #e8e4dd; }
+
+.hero { text-align: center; padding: 64px 0 48px; border: none; }
+.hero h1 { font-size: 28px; font-weight: 700; line-height: 1.3; margin-bottom: 16px; }
+.hero .subtitle { font-size: 17px; color: var(--text-muted); margin-bottom: 32px; }
+.hero .scroll-hint { display: inline-block; color: var(--sage); font-size: 15px; animation: bounce 2s infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+.section-header { text-align: center; margin-bottom: 32px; }
+.section-header h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.section-header .section-sub { font-size: 15px; color: var(--text-muted); }
+
+.card { background: var(--bg-card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; margin-bottom: 16px; }
+
+/* How it works */
+.mechanism-step { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+.mechanism-step .step-num { flex-shrink:0; width:36px; height:36px; border-radius:50%; background:var(--sage); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; }
+.mechanism-step p { flex: 1; }
+.highlight-box { background:var(--sage-bg); border-left:4px solid var(--sage); border-radius:0 var(--radius) var(--radius) 0; padding:16px 20px; margin:20px 0; font-size:16px; }
+.time-contrast { display:flex; gap:12px; justify-content:center; margin:24px 0; }
+.time-box { text-align:center; padding:16px 24px; border-radius:var(--radius); font-weight:700; }
+.time-box.natural { background:#f0e8e0; color:var(--text-muted); }
+.time-box.drug { background:var(--peach-light); color:#a0522d; }
+.time-box .big { display:block; font-size:28px; }
+.time-box .label { display:block; font-size:13px; font-weight:400; }
+
+/* Drug comparison cards */
+.drug-cards { display: flex; flex-direction: column; gap: 20px; }
+.drug-card { background:var(--bg-card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+.drug-card .drug-header { padding:20px 24px; color:white; }
+.drug-card .drug-header h3 { font-size:22px; margin:0; }
+.drug-card .drug-header .generic { font-size:14px; opacity:0.85; display:block; margin-top:4px; }
+.drug-card.mounjaro .drug-header { background:var(--mounjaro); }
+.drug-card.wegovy .drug-header { background:var(--wegovy); }
+.drug-card.saxenda .drug-header { background:var(--saxenda); }
+.drug-card .drug-body { padding:20px 24px; }
+.drug-card .drug-row { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #f0ede8; font-size:16px; }
+.drug-card .drug-row:last-child { border-bottom:none; }
+.drug-card .drug-row .dlabel { color:var(--text-muted); }
+
+/* Bar charts - 0-100% scale */
+.chart-group { margin-bottom: 28px; }
+.chart-group h4 { font-size: 15px; font-weight: 600; margin-bottom: 10px; color: var(--text-muted); }
+.bar-row { display:flex; align-items:center; margin-bottom:6px; font-size:14px; }
+.bar-label { width:110px; flex-shrink:0; text-align:right; padding-right:12px; font-size:13px; color:var(--text-muted); }
+.bar-track { flex:1; height:36px; background:#f0ede8; border-radius:6px; position:relative; overflow:hidden; background-image: repeating-linear-gradient(90deg, transparent, transparent calc(10% - 1px), rgba(0,0,0,0.06) calc(10% - 1px), rgba(0,0,0,0.06) 10%); }
+.bar-fill { position:absolute; top:0; left:0; height:100%; border-radius:6px; display:flex; align-items:center; padding-left:8px; font-size:13px; font-weight:700; color:white; }
+.bar-fill.solid { z-index: 2; }
+.bar-fill.range { z-index: 1; opacity: 0.35; }
+.bar-pct { position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:13px; font-weight:700; color:var(--text); z-index:3; }
+.bar-fill.mounjaro, .bar-fill.mounjaro.range { background: var(--mounjaro); }
+.bar-fill.wegovy { background: var(--wegovy); }
+.bar-fill.saxenda { background: var(--saxenda); }
+.bar-fill.antibio { background: var(--antibio); }
+
+/* Figurines */
+.figurine-row { display:flex; justify-content:center; gap:24px; margin:24px 0; flex-wrap:wrap; }
+.figurine { text-align:center; width:160px; }
+.figurine-body { position:relative; width:120px; height:160px; margin:0 auto 10px; }
+.figurine-body .head { width:32px; height:32px; border-radius:50%; background:#c4b5a0; position:absolute; top:0; left:50%; transform:translateX(-50%); }
+.figurine-body .torso-ghost { position:absolute; top:38px; left:50%; transform:translateX(-50%); border-radius:50%; background:rgba(196,181,160,0.2); border:2px dashed rgba(196,181,160,0.4); }
+.figurine-body .torso { position:absolute; top:38px; left:50%; transform:translateX(-50%); border-radius:50%; transition: all 0.5s ease; }
+.figurine-body .legs { position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:28px; height:50px; }
+.figurine-body .legs::before, .figurine-body .legs::after { content:''; position:absolute; bottom:0; width:10px; border-radius:5px; }
+.figurine-body .legs::before { left:0; height:50px; background:#c4b5a0; }
+.figurine-body .legs::after { right:0; height:50px; background:#c4b5a0; }
+.figurine .name { font-size:16px; font-weight:600; }
+.figurine .pct { font-size:28px; font-weight:700; line-height:1; margin:4px 0; }
+.figurine .detail { font-size:12px; color:var(--text-muted); }
+.figurine.mounjaro .pct { color:var(--mounjaro); }
+.figurine.mounjaro .torso { background:var(--mounjaro); }
+.figurine.wegovy .pct { color:var(--wegovy); }
+.figurine.wegovy .torso { background:var(--wegovy); }
+.figurine.saxenda .pct { color:var(--saxenda); }
+.figurine.saxenda .torso { background:var(--saxenda); }
+
+/* Heart stat */
+.heart-stat { text-align:center; padding:32px 20px; background:var(--bg-card); border-radius:var(--radius); box-shadow:var(--shadow); margin-bottom:16px; }
+.heart-stat .icon { font-size:48px; margin-bottom:8px; }
+.heart-stat .big-num { font-size:48px; font-weight:700; color:var(--peach); line-height:1; }
+.heart-stat .label { font-size:16px; color:var(--text-muted); margin-top:4px; }
+.heart-stat .source { font-size:13px; color:var(--text-muted); margin-top:8px; opacity:0.7; }
+
+/* Benefit grid */
+.benefit-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0; }
+.benefit-item { background:var(--bg-card); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px; text-align:center; }
+.benefit-item .bicon { font-size:32px; margin-bottom:6px; }
+.benefit-item .value { font-size:22px; font-weight:700; color:var(--sage); }
+.benefit-item .desc { font-size:13px; color:var(--text-muted); margin-top:4px; }
+
+/* Myth cards */
+.myth-card { border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); margin-bottom:16px; }
+.myth-claim { background:var(--red-light); border-left:4px solid var(--red-border); padding:14px 18px; font-size:15px; }
+.myth-claim::before { content:"❌ "; }
+.myth-reality { background:var(--green-light); border-left:4px solid var(--green-border); padding:14px 18px; font-size:15px; }
+.myth-reality::before { content:"✅ "; }
+.myth-evidence { background:var(--bg-card); padding:10px 18px; font-size:13px; color:var(--text-muted); }
+
+/* Exercise */
+.exercise-split { display:grid; grid-template-columns:1fr 1fr; gap:2px; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); margin:24px 0; }
+.exercise-side { padding:24px 16px; text-align:center; }
+.exercise-side.bad { background:#f5e8e0; }
+.exercise-side.good { background:var(--green-light); }
+.exercise-side h4 { font-size:14px; font-weight:600; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px; }
+.exercise-side .big { font-size:36px; font-weight:700; line-height:1; }
+.exercise-side.bad .big { color:#c0392b; }
+.exercise-side.good .big { color:#27ae60; }
+.exercise-side .desc { font-size:13px; color:var(--text-muted); margin-top:6px; }
+.exercise-side .detail { font-size:14px; margin-top:12px; line-height:1.4; }
+
+.callout { background:var(--peach-light); border-radius:var(--radius); padding:16px 20px; font-size:15px; margin:16px 0; text-align:center; }
+.callout strong { color:#a0522d; }
+.note { font-size:14px; color:var(--text-muted); margin-top:8px; font-style:italic; }
+
+.rec-grid { display:flex; flex-direction:column; gap:10px; margin:20px 0; }
+.rec-item { display:flex; align-items:center; gap:12px; background:var(--bg-card); border-radius:var(--radius); box-shadow:var(--shadow); padding:14px 18px; }
+.rec-item .ricon { font-size:28px; flex-shrink:0; }
+.rec-item .rec-text { font-size:15px; }
+.rec-item .rec-text strong { display:block; }
+
+.conclusion-box { background:var(--sage); color:white; border-radius:var(--radius); padding:24px; font-size:17px; line-height:1.5; text-align:center; margin:24px 0; }
+
+.summary-cards { display:flex; flex-direction:column; gap:12px; }
+.summary-card { display:flex; gap:16px; align-items:center; background:var(--bg-card); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px; border-left:5px solid; }
+.summary-card.mounjaro { border-left-color:var(--mounjaro); }
+.summary-card.wegovy { border-left-color:var(--wegovy); }
+.summary-card.saxenda { border-left-color:var(--saxenda); }
+.summary-card .sum-pct { font-size:32px; font-weight:700; flex-shrink:0; width:80px; text-align:center; }
+.summary-card.mounjaro .sum-pct { color:var(--mounjaro); }
+.summary-card.wegovy .sum-pct { color:var(--wegovy); }
+.summary-card.saxenda .sum-pct { color:var(--saxenda); }
+.summary-card .sum-text h3 { font-size:18px; margin-bottom:4px; }
+.summary-card .sum-text p { font-size:14px; color:var(--text-muted); margin:0; }
+
+.footer { text-align:center; padding:48px 20px; font-size:14px; color:var(--text-muted); border-top:1px solid #e8e4dd; }
+
+details { margin-top:12px; }
+details summary { cursor:pointer; color:var(--sage); font-size:14px; font-weight:600; padding:8px 0; }
+details summary:hover { text-decoration:underline; }
+details .detail-content { padding:12px 0; font-size:14px; color:var(--text-muted); }
+details table { width:100%; border-collapse:collapse; font-size:13px; margin-top:8px; }
+details th, details td { padding:6px 8px; text-align:left; border-bottom:1px solid #f0ede8; }
+details th { font-weight:600; color:var(--text-muted); font-size:12px; text-transform:uppercase; letter-spacing:0.3px; }
+
+@media (min-width: 768px) {
+  .hero h1 { font-size: 36px; }
+  .drug-cards { flex-direction: row; }
+  .drug-card { flex: 1; }
+  .figurine-row { gap: 32px; }
+}
+@media (max-width: 400px) {
+  body { font-size: 16px; }
+  .hero h1 { font-size: 24px; }
+  .bar-label { width: 85px; font-size: 12px; }
+  .benefit-grid { grid-template-columns: 1fr; }
+  .figurine { width: 110px; }
+  .figurine-body { width: 90px; height: 130px; }
+  .figurine .pct { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero .scroll-hint { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>Co opravdu říkají studie<br>o lécích na hubnutí</h1>
+    <p class="subtitle">Přehled ze syntézy <strong>80+ klinických studií</strong>.<br>Žádné názory — jen data.</p>
+    <span class="scroll-hint">Jak to funguje ↓</span>
+  </div>
+</section>
+
+<!-- JAK TO FUNGUJE -->
+<section id="mechanismus">
+  <div class="container">
+    <div class="section-header"><h2>Jak to funguje</h2></div>
+    <div class="card">
+      <div class="mechanism-step"><div class="step-num">1</div><p>Když se najíte, střevo vyplaví hormon <strong>GLP-1</strong>. Ten doputuje k&nbsp;mozku, zpomalí žaludek a&nbsp;vyvolá pocit sytosti.</p></div>
+      <div class="mechanism-step"><div class="step-num">2</div><p>Problém: tělo si tento signál samo zlikviduje — přirozeně vydrží přibližně <strong>dvě minuty</strong> a&nbsp;zmizí.</p></div>
+      <div class="mechanism-step"><div class="step-num">3</div><p>Tyto léky jsou napodobeniny téhož hormonu, ale upravené tak, aby vydržely <strong>celé dny</strong>. Mozek nepřetržitě dostává signál „jsem plný" — i&nbsp;když člověk nejedl.</p></div>
+      <div class="time-contrast">
+        <div class="time-box natural"><span class="big">2 min</span><span class="label">přirozený signál</span></div>
+        <div class="time-box drug"><span class="big">dny</span><span class="label">signál s lékem</span></div>
+      </div>
+    </div>
+    <div class="highlight-box"><strong>Mounjaro</strong> má navíc druhou složku — kromě GLP-1 aktivuje i&nbsp;receptor <strong>GIP</strong> v&nbsp;tukové tkáni, kde zvyšuje spalování energie. Wegovy a&nbsp;Saxenda působí jen přes GLP-1.</div>
+  </div>
+</section>
+
+<!-- POROVNÁNÍ -->
+<section id="porovnani">
+  <div class="container">
+    <div class="section-header"><h2>Porovnání tří léků</h2></div>
+    <div class="drug-cards">
+      <div class="drug-card mounjaro">
+        <div class="drug-header"><h3>Mounjaro</h3><span class="generic">tirzepatid</span></div>
+        <div class="drug-body">
+          <div class="drug-row"><span class="dlabel">Výrobce</span><span>Eli Lilly</span></div>
+          <div class="drug-row"><span class="dlabel">Mechanismus</span><span>GLP-1 + GIP (dvojitý)</span></div>
+          <div class="drug-row"><span class="dlabel">Dávkování</span><span>1× týdně</span></div>
+        </div>
+      </div>
+      <div class="drug-card wegovy">
+        <div class="drug-header"><h3>Wegovy</h3><span class="generic">semaglutid</span></div>
+        <div class="drug-body">
+          <div class="drug-row"><span class="dlabel">Výrobce</span><span>Novo Nordisk</span></div>
+          <div class="drug-row"><span class="dlabel">Mechanismus</span><span>GLP-1 (jednoduchý)</span></div>
+          <div class="drug-row"><span class="dlabel">Dávkování</span><span>1× týdně</span></div>
+        </div>
+      </div>
+      <div class="drug-card saxenda">
+        <div class="drug-header"><h3>Saxenda</h3><span class="generic">liraglutid</span></div>
+        <div class="drug-body">
+          <div class="drug-row"><span class="dlabel">Výrobce</span><span>Novo Nordisk</span></div>
+          <div class="drug-row"><span class="dlabel">Mechanismus</span><span>GLP-1 (jednoduchý)</span></div>
+          <div class="drug-row"><span class="dlabel">Dávkování</span><span>1× denně</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEŽÁDOUCÍ ÚČINKY -->
+<section id="nezadouci">
+  <div class="container">
+    <div class="section-header">
+      <h2>Trávicí potíže v prvních měsících</h2>
+      <p class="section-sub">V prvních ~4 měsících se dávka postupně zvyšuje. Právě v tomto období se u části pacientů objeví nevolnost, zvracení nebo průjem. Po stabilizaci dávky potíže většinou odeznívají.<br><br>Čísla níže ukazují, <strong>u kolika % pacientů se potíže objevily</strong> alespoň jednou za toto období. Jsou očištěná o placebo (odečteno, co by se stalo i bez léku). Data z&nbsp;>9 300 pacientů.</p>
+    </div>
+
+    <div class="card">
+      <div class="chart-group">
+        <h4>Nevolnost</h4>
+        <!-- Mounjaro 2-9% -->
+        <div class="bar-row">
+          <span class="bar-label">Mounjaro</span>
+          <div class="bar-track">
+            <div class="bar-fill solid mounjaro" style="width:2%"></div>
+            <div class="bar-fill range mounjaro" style="width:9%"></div>
+            <span class="bar-pct" style="left:10%">2–9 %</span>
+          </div>
+        </div>
+        <!-- Wegovy ~29% -->
+        <div class="bar-row">
+          <span class="bar-label">Wegovy</span>
+          <div class="bar-track">
+            <div class="bar-fill solid wegovy" style="width:29%"></div>
+            <span class="bar-pct" style="left:30%">~29 %</span>
+          </div>
+        </div>
+        <!-- Saxenda ~25% -->
+        <div class="bar-row">
+          <span class="bar-label">Saxenda</span>
+          <div class="bar-track">
+            <div class="bar-fill solid saxenda" style="width:25%"></div>
+            <span class="bar-pct" style="left:26%">~25 %</span>
+          </div>
+        </div>
+        <!-- Antibiotikum 3% -->
+        <div class="bar-row">
+          <span class="bar-label">Antibiotikum</span>
+          <div class="bar-track">
+            <div class="bar-fill solid antibio" style="width:3%"></div>
+            <span class="bar-pct" style="left:4%">3 %</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-group">
+        <h4>Zvracení</h4>
+        <div class="bar-row">
+          <span class="bar-label">Mounjaro</span>
+          <div class="bar-track">
+            <div class="bar-fill solid mounjaro" style="width:0%"></div>
+            <div class="bar-fill range mounjaro" style="width:5%"></div>
+            <span class="bar-pct" style="left:6%">0–5 %</span>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Wegovy</span>
+          <div class="bar-track">
+            <div class="bar-fill solid wegovy" style="width:20%"></div>
+            <span class="bar-pct" style="left:21%">~20 %</span>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Saxenda</span>
+          <div class="bar-track">
+            <div class="bar-fill solid saxenda" style="width:11%"></div>
+            <span class="bar-pct" style="left:12%">~11 %</span>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Antibiotikum</span>
+          <div class="bar-track">
+            <div class="bar-fill solid antibio" style="width:1%"></div>
+            <span class="bar-pct" style="left:2%">1 %</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-group">
+        <h4>Průjem</h4>
+        <div class="bar-row">
+          <span class="bar-label">Mounjaro</span>
+          <div class="bar-track">
+            <div class="bar-fill solid mounjaro" style="width:0%"></div>
+            <div class="bar-fill range mounjaro" style="width:9%"></div>
+            <span class="bar-pct" style="left:10%">0–9 %</span>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Wegovy</span>
+          <div class="bar-track">
+            <div class="bar-fill solid wegovy" style="width:17%"></div>
+            <span class="bar-pct" style="left:18%">~17 %</span>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Saxenda</span>
+          <div class="bar-track">
+            <div class="bar-fill solid saxenda" style="width:8%"></div>
+            <span class="bar-pct" style="left:9%">~8 %</span>
+          </div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Antibiotikum</span>
+          <div class="bar-track">
+            <div class="bar-fill solid antibio" style="width:9%"></div>
+            <div class="bar-fill range antibio" style="width:15%"></div>
+            <span class="bar-pct" style="left:16%">9–15 %</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      Průjem u Wegovy (~17 %) je srovnatelný s průjmem po <strong>běžné kůře antibiotik</strong> (9–15 %).<br>
+      Nevolnost u Mounjaro (2–9 %) je srovnatelná s antibiotikem (3 %).
+    </div>
+
+    <div class="highlight-box">
+      <strong>Klíčový poznatek:</strong> V přímém srovnání 751 pacientů měl Mounjaro <strong>nižší</strong> míru vysazení kvůli trávicím potížím (2,7 %) než Wegovy (5,6 %), a přitom vyšší účinnost. Složka GIP zřejmě trávicí potíže tlumí.
+    </div>
+
+  </div>
+</section>
+
+<!-- POZITIVNÍ ÚČINKY -->
+<section id="pozitivni">
+  <div class="container">
+    <div class="section-header"><h2>Pozitivní účinky</h2></div>
+
+    <!-- Úbytek hmotnosti - figuríny -->
+    <h3 style="text-align:center; margin-bottom:8px; font-size:18px;">Úbytek hmotnosti za ~72 týdnů</h3>
+    <p style="text-align:center; font-size:14px; color:var(--text-muted); margin-bottom:16px;">Obézní dospělí bez cukrovky</p>
+
+    <div style="text-align:center; margin:24px 0;">
+      <img src="img/figurines.webp" alt="Vizualizace úbytku hmotnosti: Mounjaro −21 %, Wegovy −15 %, Saxenda −8 %" style="max-width:100%; height:auto; border-radius:var(--radius);">
+      <div style="display:flex; justify-content:space-around; max-width:500px; margin:12px auto 0; font-size:14px;">
+        <div style="text-align:center;"><strong style="color:var(--mounjaro);">Mounjaro</strong><br><span style="color:var(--text-muted);">2 539 pacientů</span></div>
+        <div style="text-align:center;"><strong style="color:var(--wegovy);">Wegovy</strong><br><span style="color:var(--text-muted);">1 961 pacientů</span></div>
+        <div style="text-align:center;"><strong style="color:var(--saxenda);">Saxenda</strong><br><span style="color:var(--text-muted);">3 731 pacientů</span></div>
+      </div>
+    </div>
+
+    <details>
+      <summary>Podrobné rozdělení podle velikosti úbytku ▾</summary>
+      <div class="detail-content">
+        <table>
+          <thead><tr><th>Lék</th><th>≥5 %</th><th>≥10 %</th><th>≥15 %</th><th>≥20 %</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Mounjaro</strong></td><td>91 %</td><td>79 %</td><td>68 %</td><td>57 %</td></tr>
+            <tr><td><strong>Wegovy</strong></td><td>86 %</td><td>69 %</td><td>51 %</td><td>32 %</td></tr>
+            <tr><td><strong>Saxenda</strong></td><td>63 %</td><td>33 %</td><td>~14 %</td><td>~5 %</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:8px;">Wegovy HD 7,2 mg (nový, duben 2026): průměrný úbytek <strong>−20,7 %</strong> (1 407 pacientů).</p>
+        <p>Při cukrovce 2. typu je účinek o 5–6 procentních bodů nižší u všech tří léků.</p>
+      </div>
+    </details>
+
+    <!-- Úmrtnost + KV -->
+    <div style="margin-top:40px;">
+      <h3 style="text-align:center; margin-bottom:16px; font-size:18px;">Ochrana srdce a cév</h3>
+      <div class="heart-stat">
+        <div class="icon">❤️</div>
+        <div class="big-num">−20 %</div>
+        <div class="label">méně infarktů, mrtvic a KV úmrtí</div>
+        <div class="source">Wegovy 2,4 mg · studie SELECT · 17 604 pacientů</div>
+      </div>
+      <div class="heart-stat">
+        <div class="icon">🫀</div>
+        <div class="big-num">−19 %</div>
+        <div class="label">snížení celkové úmrtnosti</div>
+        <div class="source">Wegovy 2,4 mg · jediný lék s důkazem při dávce na hubnutí</div>
+      </div>
+      <details>
+        <summary>Údaje pro ostatní léky ▾</summary>
+        <div class="detail-content">
+          <p><strong>Victoza 1,8 mg</strong> (diabetická dávka, ne na hubnutí): −13 % KV příhod, −15 % úmrtnost (9 340 pacientů)</p>
+          <p><strong>Mounjaro</strong>: −8 % KV příhod (statisticky neprůkazné), ~16 % redukce úmrtnosti (13 165 pacientů, srovnání s jiným lékem)</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Ochrana ledvin -->
+    <div style="margin-top:32px;">
+      <div class="heart-stat">
+        <div class="icon">🫘</div>
+        <div class="big-num">−24 %</div>
+        <div class="label">snížení selhání ledvin</div>
+        <div class="source">Ozempic 1,0 mg · studie FLOW · 3 533 pacientů<br>Studie ukončena předčasně — přínos byl tak jasný, že nebylo etické pokračovat s placebem.</div>
+      </div>
+      <details>
+        <summary>Údaje pro ostatní léky ▾</summary>
+        <div class="detail-content">
+          <p><strong>Wegovy 2,4 mg</strong>: −22 % (17 604 pacientů, prokázáno i u nediabetiků)</p>
+          <p><strong>Mounjaro</strong>: −33 % (1 241 pacientů)</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Prevence cukrovky -->
+    <div style="margin-top:32px;">
+      <div class="heart-stat">
+        <div class="icon">🩸</div>
+        <div class="big-num">94 %</div>
+        <div class="label">snížení rizika vzniku cukrovky 2. typu</div>
+        <div class="source">Mounjaro · 1 032 prediabetických pacientů</div>
+      </div>
+      <details>
+        <summary>Údaje pro ostatní léky ▾</summary>
+        <div class="detail-content">
+          <p><strong>Saxenda</strong>: 79% snížení za 3 roky (2 254 pacientů)</p>
+          <p><strong>Wegovy</strong>: 81 % dosáhlo normoglykémie za 52 týdnů</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Další přínosy -->
+    <div style="margin-top:32px;">
+      <h3 style="text-align:center; margin-bottom:16px; font-size:18px;">Další prokázané přínosy</h3>
+      <div class="benefit-grid">
+        <div class="benefit-item"><div class="bicon">🩸</div><div class="value">−7 až −11</div><div class="desc">mmHg krevní tlak<br>(Mounjaro)</div></div>
+        <div class="benefit-item"><div class="bicon">💓</div><div class="value">−18 %</div><div class="desc">fibrilace síní<br>(40 694 pacientů)</div></div>
+        <div class="benefit-item"><div class="bicon">❤️‍🩹</div><div class="value">2×</div><div class="desc">méně komplikací<br>srdečního selhání</div></div>
+        <div class="benefit-item"><div class="bicon">😴</div><div class="value">52 %</div><div class="desc">vyléčení<br>spánkové apnoe</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VYVRÁCENÉ OBAVY -->
+<section id="obavy">
+  <div class="container">
+    <div class="section-header">
+      <h2>5 obav, které studie vyvrátily</h2>
+      <p class="section-sub">Co se šíří na internetu — a co říkají data</p>
+    </div>
+    <div class="myth-card">
+      <div class="myth-claim">„Tyto léky způsobují rakovinu štítné žlázy."</div>
+      <div class="myth-reality"><strong>Vyvráceno.</strong> Varování na letácích vychází z pokusů na potkanech — lidská štítná žláza funguje jinak (5–10× méně receptorů). U lidí se hladiny kalcitoninu vůbec nemění.</div>
+      <div class="myth-evidence">📊 Ověřeno na <strong>2,5 milionu pacientů</strong> ze 6 zemí</div>
+    </div>
+    <div class="myth-card">
+      <div class="myth-claim">„Způsobují sebevražedné myšlenky a depresi."</div>
+      <div class="myth-reality"><strong>Vyvráceno.</strong> Naopak — uživatelé Wegovy měli o <strong>73 % nižší</strong> výskyt sebevražedných myšlenek. FDA v roce 2026 požádala o <strong>odstranění</strong> tohoto varování z příbalových letáků.</div>
+      <div class="myth-evidence">📊 Ověřeno na <strong>2,35 milionu pacientů</strong> (91 studií + databáze)</div>
+    </div>
+    <div class="myth-card">
+      <div class="myth-claim">„Způsobují rakovinu slinivky."</div>
+      <div class="myth-reality"><strong>Vyvráceno.</strong> Naopak — GLP-1 léky vykazují <strong>možný ochranný účinek</strong> proti rakovině slinivky oproti všem šesti třídám porovnávaných léků.</div>
+      <div class="myth-evidence">📊 Ověřeno na <strong>1,6 milionu pacientů</strong></div>
+    </div>
+    <div class="myth-card">
+      <div class="myth-claim">„Způsobují zánět slinivky (pankreatitidu)."</div>
+      <div class="myth-reality"><strong>Vyvráceno.</strong> Po kontrole na doprovodné léky nebylo nalezeno zvýšené riziko. V reálných datech měli uživatelé dokonce <strong>nižší</strong> riziko. Závěr FDA i EMA: žádný kauzální vztah.</div>
+      <div class="myth-evidence">📊 Ověřeno na <strong>230 000 pacientech</strong> (62 studií)</div>
+    </div>
+    <div class="myth-card">
+      <div class="myth-claim">„Člověk přijde o svaly — hubne nezdravě."</div>
+      <div class="myth-reality"><strong>Vyvráceno.</strong> Poměr ~25 % svaly / ~75 % tuk je <strong>shodný s klasickou dietou</strong> při odpovídajícím úbytku. Léky samy o sobě nezpůsobují nepřiměřený úbytek svalů. Ale — viz cvičení níže.</div>
+      <div class="myth-evidence">📊 Ověřeno na <strong>2 258 pacientech</strong> (22 studií s DEXA měřením)</div>
+    </div>
+  </div>
+</section>
+
+<!-- CVIČENÍ -->
+<section id="cviceni">
+  <div class="container">
+    <div class="section-header"><h2>Proč je silové cvičení tak důležité</h2></div>
+    <div class="exercise-split">
+      <div class="exercise-side bad">
+        <h4>Bez cvičení</h4>
+        <div class="big">+7 kg</div>
+        <div class="desc">návrat váhy po vysazení</div>
+        <div class="detail">25 % zhubnuté váhy jsou svaly. Při zhubnutí 20 kg = ztráta 5 kg svalů.</div>
+      </div>
+      <div class="exercise-side good">
+        <h4>Se cvičením</h4>
+        <div class="big">+1 kg</div>
+        <div class="desc">návrat váhy po vysazení</div>
+        <div class="detail">Svaly se udrží, nebo dokonce narostou. Hubne se <strong>jen tukem</strong>.</div>
+      </div>
+    </div>
+    <div class="callout">Při cvičení 3–5× týdně a bílkovinami >1,2 g/kg/den <strong>dva ze tří sledovaných pacientů svalovou hmotu nabrali</strong>, navzdory úbytku 13–33 % hmotnosti.</div>
+    <h3 style="font-size:17px; margin: 24px 0 12px;">Doporučení</h3>
+    <div class="rec-grid">
+      <div class="rec-item"><div class="ricon">🏋️</div><div class="rec-text"><strong>Silový trénink min. 2× týdně</strong>Ne kardio, ne běhání — posilování.</div></div>
+      <div class="rec-item"><div class="ricon">🥩</div><div class="rec-text"><strong>Bílkoviny >1,2 g/kg/den</strong>Maso, ryby, vejce, tvaroh.</div></div>
+      <div class="rec-item"><div class="ricon">📋</div><div class="rec-text"><strong>DEXA měření (65+ let)</strong>Na počátku a po 12 měsících.</div></div>
+    </div>
+    <div class="conclusion-box"><strong>Silové cvičení</strong> (ne kardio, ne běhání) je jediná prokázaná strategie, která vede k úbytku <strong>jenom tuku</strong> bez ztráty svalů.<br><br>Kdo bere GLP-1 lék a necvičí silově, platí za hubnutí zbytečnou daň.</div>
+  </div>
+</section>
+
+<!-- SHRNUTÍ -->
+<section id="shrnuti">
+  <div class="container">
+    <div class="section-header"><h2>Shrnutí</h2></div>
+    <div class="summary-cards">
+      <div class="summary-card mounjaro"><div class="sum-pct">−21 %</div><div class="sum-text"><h3>Mounjaro</h3><p>Nejúčinnější, nejlépe snášený (nejméně nevolnosti). Chybí důkazy o snížení úmrtnosti. 1× týdně.</p></div></div>
+      <div class="summary-card wegovy"><div class="sum-pct">−15 %</div><div class="sum-text"><h3>Wegovy</h3><p>Zlatý standard pro ochranu srdce (−20 % infarktů, −19 % úmrtí na 17 604 pacientech). 1× týdně.</p></div></div>
+      <div class="summary-card saxenda"><div class="sum-pct">−8 %</div><div class="sum-text"><h3>Saxenda</h3><p>Nejslabší, ale nejlevnější. Bez důkazů o snížení úmrtnosti. 1× denně.</p></div></div>
+    </div>
+    <div class="conclusion-box" style="margin-top:20px;">Po vysazení se váha vrací. Plánujte dlouhodobé užívání.<br>A hlavně — <strong>cvičte silově</strong>. Je to jediný způsob, jak si při hubnutí udržet svaly a kosti.</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Tento přehled vychází ze syntézy 80+ klinických studií.<br>Není náhradou za lékařskou konzultaci.</p>
+  <p style="margin-top:16px; font-size:12px; line-height:1.6;">Zdroje dat: <em>New England Journal of Medicine</em> (SURMOUNT, STEP, SELECT, FLOW, LEADER), <em>The Lancet</em>, <em>JAMA</em>, <em>Nature Medicine</em>, meta-analýzy FDA a EMA. Poslední aktualizace: duben 2026.</p>
+</footer>
+
+</body>
+</html>
