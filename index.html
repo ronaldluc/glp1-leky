@@ -66,18 +66,19 @@ section + section { border-top: 1px solid #e8e4dd; }
 .time-box .label { display:block; font-size:13px; font-weight:400; }
 
 /* Drug comparison cards */
-.drug-cards { display: flex; flex-direction: column; gap: 20px; }
+.drug-cards { display: flex; flex-direction: column; gap: 16px; }
 .drug-card { background:var(--bg-card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
-.drug-card .drug-header { padding:20px 24px; color:white; }
+.drug-card .drug-header { padding:16px 20px; color:white; }
 .drug-card .drug-header h3 { font-size:22px; margin:0; }
 .drug-card .drug-header .generic { font-size:14px; opacity:0.85; display:block; margin-top:4px; }
 .drug-card.mounjaro .drug-header { background:var(--mounjaro); }
 .drug-card.wegovy .drug-header { background:var(--wegovy); }
 .drug-card.saxenda .drug-header { background:var(--saxenda); }
-.drug-card .drug-body { padding:20px 24px; }
-.drug-card .drug-row { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #f0ede8; font-size:16px; }
+.drug-card .drug-body { padding:16px 20px; }
+.drug-card .drug-row { padding:8px 0; border-bottom:1px solid #f0ede8; font-size:15px; }
 .drug-card .drug-row:last-child { border-bottom:none; }
-.drug-card .drug-row .dlabel { color:var(--text-muted); }
+.drug-card .drug-row .dlabel { color:var(--text-muted); font-size:12px; text-transform:uppercase; letter-spacing:0.3px; display:block; margin-bottom:2px; }
+.drug-card .drug-row .dval { display:block; font-weight:600; }
 
 /* Bar charts - 0-100% scale */
 .chart-group { margin-bottom: 28px; }
@@ -185,18 +186,21 @@ details th { font-weight:600; color:var(--text-muted); font-size:12px; text-tran
 
 @media (min-width: 768px) {
   .hero h1 { font-size: 36px; }
-  .drug-cards { flex-direction: row; }
-  .drug-card { flex: 1; }
-  .figurine-row { gap: 32px; }
+  .drug-cards { flex-direction: row; gap: 16px; }
+  .drug-card { flex: 1; min-width: 0; }
 }
 @media (max-width: 400px) {
   body { font-size: 16px; }
   .hero h1 { font-size: 24px; }
-  .bar-label { width: 85px; font-size: 12px; }
+  .bar-label { width: 80px; font-size: 11px; }
   .benefit-grid { grid-template-columns: 1fr; }
-  .figurine { width: 110px; }
-  .figurine-body { width: 90px; height: 130px; }
-  .figurine .pct { font-size: 22px; }
+  .section-header h2 { font-size: 21px; }
+  .callout { font-size: 14px; padding: 14px 16px; }
+  .highlight-box { font-size: 14px; padding: 14px 16px; }
+  .exercise-side .detail { font-size: 13px; }
+  .summary-card .sum-pct { font-size: 28px; width: 65px; }
+  .summary-card .sum-text h3 { font-size: 16px; }
+  .summary-card { padding: 16px; gap: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -240,25 +244,25 @@ details th { font-weight:600; color:var(--text-muted); font-size:12px; text-tran
       <div class="drug-card mounjaro">
         <div class="drug-header"><h3>Mounjaro</h3><span class="generic">tirzepatid</span></div>
         <div class="drug-body">
-          <div class="drug-row"><span class="dlabel">Výrobce</span><span>Eli Lilly</span></div>
-          <div class="drug-row"><span class="dlabel">Mechanismus</span><span>GLP-1 + GIP (dvojitý)</span></div>
-          <div class="drug-row"><span class="dlabel">Dávkování</span><span>1× týdně</span></div>
+          <div class="drug-row"><span class="dlabel">Výrobce</span><span class="dval">Eli Lilly</span></div>
+          <div class="drug-row"><span class="dlabel">Mechanismus</span><span class="dval">GLP-1 + GIP (dvojitý)</span></div>
+          <div class="drug-row"><span class="dlabel">Dávkování</span><span class="dval">1× týdně</span></div>
         </div>
       </div>
       <div class="drug-card wegovy">
         <div class="drug-header"><h3>Wegovy</h3><span class="generic">semaglutid</span></div>
         <div class="drug-body">
-          <div class="drug-row"><span class="dlabel">Výrobce</span><span>Novo Nordisk</span></div>
-          <div class="drug-row"><span class="dlabel">Mechanismus</span><span>GLP-1 (jednoduchý)</span></div>
-          <div class="drug-row"><span class="dlabel">Dávkování</span><span>1× týdně</span></div>
+          <div class="drug-row"><span class="dlabel">Výrobce</span><span class="dval">Novo Nordisk</span></div>
+          <div class="drug-row"><span class="dlabel">Mechanismus</span><span class="dval">GLP-1 (jednoduchý)</span></div>
+          <div class="drug-row"><span class="dlabel">Dávkování</span><span class="dval">1× týdně</span></div>
         </div>
       </div>
       <div class="drug-card saxenda">
         <div class="drug-header"><h3>Saxenda</h3><span class="generic">liraglutid</span></div>
         <div class="drug-body">
-          <div class="drug-row"><span class="dlabel">Výrobce</span><span>Novo Nordisk</span></div>
-          <div class="drug-row"><span class="dlabel">Mechanismus</span><span>GLP-1 (jednoduchý)</span></div>
-          <div class="drug-row"><span class="dlabel">Dávkování</span><span>1× denně</span></div>
+          <div class="drug-row"><span class="dlabel">Výrobce</span><span class="dval">Novo Nordisk</span></div>
+          <div class="drug-row"><span class="dlabel">Mechanismus</span><span class="dval">GLP-1 (jednoduchý)</span></div>
+          <div class="drug-row"><span class="dlabel">Dávkování</span><span class="dval">1× denně</span></div>
         </div>
       </div>
     </div>
