@@ -577,9 +577,80 @@ details th { font-weight:600; color:var(--text-muted); font-size:12px; text-tran
   </div>
 </section>
 
+<!-- JAK NA TO V BRNĚ -->
+<section id="brno">
+  <div class="container">
+    <div class="section-header">
+      <h2>Jak se k lékům dostat v Brně</h2>
+      <p class="section-sub">Praktický průvodce podle českých doporučených postupů a zveřejněných kritérií FN Brno</p>
+    </div>
+
+    <!-- Rozhodovací schéma -->
+    <div class="card" style="padding:20px;">
+      <h3 style="font-size:17px; margin-bottom:16px; text-align:center;">Tři role, tři účely</h3>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:12px; align-items:flex-start; padding:12px 14px; background:var(--sage-bg); border-radius:8px;">
+          <span style="font-size:24px; flex-shrink:0;">🏥</span>
+          <div style="font-size:14px;"><strong style="display:block; margin-bottom:2px;">Praktický lékař</strong>Potvrzuje diagnózu a otevírá dveře. Screening prediabetu, vystavení žádanky ke specialistovi.</div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:flex-start; padding:12px 14px; background:#e8f0f8; border-radius:8px;">
+          <span style="font-size:24px; flex-shrink:0;">💊</span>
+          <div style="font-size:14px;"><strong style="display:block; margin-bottom:2px;">Obezitolog</strong>Řeší léky na obezitu (GLP-1) a případně bariatrii. V Brně: <strong>Obezitologická ambulance FN Brno</strong>, Bohunice, pavilon D2.</div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:flex-start; padding:12px 14px; background:#f0e8f4; border-radius:8px;">
+          <span style="font-size:24px; flex-shrink:0;">🩸</span>
+          <div style="font-size:14px;"><strong style="display:block; margin-bottom:2px;">Diabetolog</strong>Řeší prediabetes, metformin a metabolické riziko. V Brně: <strong>Diabetologické centrum FN Brno</strong>, pavilon X.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BMI rozhodovací strom -->
+    <h3 style="font-size:17px; margin:28px 0 16px; text-align:center;">Kam jít záleží na vašem BMI</h3>
+
+    <!-- BMI ≥35 -->
+    <div style="background:var(--bg-card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; margin-bottom:16px;">
+      <div style="background:var(--mounjaro); color:white; padding:14px 18px;">
+        <strong style="font-size:16px;">BMI 35 a výš</strong>
+        <span style="display:block; font-size:13px; opacity:0.85; margin-top:2px;">Při 170 cm = od ~101 kg</span>
+      </div>
+      <div style="padding:16px 18px; font-size:14px; line-height:1.6;">
+        <strong>Nejpřímější cesta k lékům.</strong> FN Brno přijímá pacienty s BMI&nbsp;≥35 a přidruženým onemocněním (prediabetes se počítá).
+        <div style="margin-top:12px; padding:10px 14px; background:var(--sage-bg); border-radius:8px; font-size:13px;">
+          <strong>Postup:</strong> Praktik → potvrzení prediabetu → žádanka → <strong>Obezitologická ambulance FN Brno</strong><br>
+          Tel: 532 23 1452 / 1453 · Bohunice, pavilon D2 · pouze na objednání
+        </div>
+        <p style="margin-top:10px; font-size:13px; color:var(--text-muted);">České doporučení navíc říká, že u prediabetu s BMI&nbsp;≥35 má být nasazen metformin. To je další důvod jít ke specialistovi hned, ne „až to bude horší".</p>
+      </div>
+    </div>
+
+    <!-- BMI 30-34,9 -->
+    <div style="background:var(--bg-card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; margin-bottom:16px;">
+      <div style="background:var(--wegovy); color:white; padding:14px 18px;">
+        <strong style="font-size:16px;">BMI 30–34,9</strong>
+        <span style="display:block; font-size:13px; opacity:0.85; margin-top:2px;">Při 170 cm = ~87–101 kg</span>
+      </div>
+      <div style="padding:16px 18px; font-size:14px; line-height:1.6;">
+        <strong>Cesta je delší, ale existuje.</strong> Podle českých směrnic jste kandidát na léčbu obezity (farmakoterapie od BMI&nbsp;≥30). Ale vstupní kritéria FN Brno jsou přísnější — preferují BMI&nbsp;≥35.
+        <div style="margin-top:12px; padding:10px 14px; background:var(--sage-bg); border-radius:8px; font-size:13px;">
+          <strong>Postup:</strong> Praktik → potvrzení prediabetu → žádanka na <strong>diabetologa</strong> (kvůli dysglykemii)<br>
+          Současně zkusit i obezitologii — ale počítat s tím, že FN Brno může preferovat vyšší BMI.<br>
+          <span style="margin-top:6px; display:block;">Diabetologické centrum FN Brno · Tel: 532 233 816 · pavilon X · pouze na objednání</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- První krok -->
+    <div class="conclusion-box">
+      <strong>První krok je vždy stejný:</strong> jděte za praktikem.<br>
+      Požádejte o vyšetření glykémie nalačno nebo oGTT.<br>
+      S potvrzenou diagnózou a žádankou se otevřou dveře ke specialistovi.
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
   <p>Tento přehled vychází ze syntézy 80+ klinických studií.<br>Není náhradou za lékařskou konzultaci.</p>
-  <p style="margin-top:16px; font-size:12px; line-height:1.6;">Zdroje dat: <em>New England Journal of Medicine</em> (SURMOUNT, STEP, SELECT, FLOW, LEADER), <em>The Lancet</em>, <em>JAMA</em>, <em>Nature Medicine</em>, meta-analýzy FDA a EMA. Poslední aktualizace: duben 2026.</p>
+  <p style="margin-top:16px; font-size:12px; line-height:1.6;">Zdroje dat: <em>New England Journal of Medicine</em> (SURMOUNT, STEP, SELECT, FLOW, LEADER), <em>The Lancet</em>, <em>JAMA</em>, <em>Nature Medicine</em>, meta-analýzy FDA a EMA.<br>Vstupní kritéria FN Brno: veřejně dostupné informace z webových stránek FN Brno.<br>Poslední aktualizace: duben 2026.</p>
 </footer>
 
 </body>
